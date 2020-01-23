@@ -11,26 +11,26 @@
 #bash cov_filtering.sh /mnt/nfs/bioinfdata/home/NIOO/cristianp/WGBS PN_CZ_01_51_R1_HC0_M1_1 WGBS_filtered 5
 
 #Original WGBS output structure:
-#Folder: 		WGBS
-#Subfolders: 		sample_1
-#						bam
-#						bedGraph
-#							sample_1_CpG.bedGraph
-#							sample_1_CHG.bedGraph
-#							sample_1_CHH.bedGraph
-#						stats
-#						sample_1.bam
-#					sample_2
-#					sample_3
-#					sample_n
+#Folder:    WGBS
+#Subfolders:  sample_1
+#               bam
+#               bedGraph
+#                 sample_1_CpG.bedGraph
+#                 sample_1_CHG.bedGraph
+#                 sample_1_CHH.bedGraph
+#               stats
+#               sample_1.bam
+#             sample_2
+#             sample_3
+#             sample_n
 
 #Filtered WGBS output structure:
-#Folder: 		WGBS_filtered
-#Subfolders: 		sample_1
-#						bedGraph
-#							sample_1_CpG.bedGraph
-#							sample_1_CHG.bedGraph
-#							sample_1_CHH.bedGraph
+#Folder:    WGBS_filtered
+#Subfolders:  sample_1
+#               bedGraph
+#                 sample_1_CpG.bedGraph
+#                 sample_1_CHG.bedGraph
+#                 sample_1_CHH.bedGraph
 
 inputpath=$1
 #e.g. /scr/episan/RP13/stress_G1/WGBS
