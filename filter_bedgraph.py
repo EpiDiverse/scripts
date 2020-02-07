@@ -33,18 +33,18 @@ def main(options):
 
 	fcon = list()
 	# Obtain list of contexts
-	if options.CAA: fcon.append("CAA") 
-	if options.CAC: fcon.append("CAC")
-	if options.CAT: fcon.append("CAT")
-	if options.CCA: fcon.append("CCA")
-	if options.CCC: fcon.append("CCC")
-	if options.CCT: fcon.append("CCT")
-	if options.CTA: fcon.append("CTA")
-	if options.CTC: fcon.append("CTC")
-	if options.CTT: fcon.append("CTT")
-	if options.CAG: fcon.append("CAG")
-	if options.CCG: fcon.append("CCG")
-	if options.CTG: fcon.append("CTG")
+	if options.CAA or options.CHH: fcon.append("CAA") 
+	if options.CAC or options.CHH: fcon.append("CAC")
+	if options.CAT or options.CHH: fcon.append("CAT")
+	if options.CCA or options.CHH: fcon.append("CCA")
+	if options.CCC or options.CHH: fcon.append("CCC")
+	if options.CCT or options.CHH: fcon.append("CCT")
+	if options.CTA or options.CHH: fcon.append("CTA")
+	if options.CTC or options.CHH: fcon.append("CTC")
+	if options.CTT or options.CHH: fcon.append("CTT")
+	if options.CAG or options.CHG: fcon.append("CAG")
+	if options.CCG or options.CHG: fcon.append("CCG")
+	if options.CTG or options.CHG: fcon.append("CTG")
 	if options.CpG: fcon.append("CG")	
 
 	# 2) Iterate through sys.stdin to generate output bedGraph
@@ -181,6 +181,10 @@ if __name__ == '__main__':
 						help='Filter CCG context')
 	parser.add_argument('--CTG', required=False, default=False, action='store_true',
 						help='Filter CTG context')
+	parser.add_argument('--CHH', required=False, default=False, action='store_true',
+						help='Filter CHH context')
+	parser.add_argument('--CHG', required=False, default=False, action='store_true',
+						help='Filter CHG context')
 	parser.add_argument('--CpG', required=False, default=False, action='store_true',
 						help='Filter CG context')
 	parser.add_argument('--tabix', required=False, default=False, action='store_true',
