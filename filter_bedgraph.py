@@ -48,14 +48,14 @@ def main(options):
 	if options.CpG: fcon.append("CG")	
 
 	# 2) Iterate through sys.stdin to generate output bedGraph
-	iterator(genome,options.coverage,fcon,options.tabix)
+	iterator(genome,options.coverage,fcon,options.tabix,options.header)
 
 
 ####### Function to build 'genome' dictionary from 'FASTA' file object
 def build_genome(FASTA):
 
 	############################################################################################
-	## FASTA = string of path to reference genome eg. "/path/to/reference.fa"                 ##
+	## FASTA		= 	string of path to reference genome eg. "/path/to/reference.fa"        ##
 	############################################################################################
 
 	# declare an empty dictionary and stage the 'FASTA' file
@@ -93,7 +93,19 @@ def build_genome(FASTA):
 
 
 ####### Function to iterate std.in and extract subcontexts from 'genome' dictionary
-def iterator(genome,coverage=0,fcon=None,tabix=False):
+def iterator(genome,coverage=0,fcon=None,tabix=False,header=False):
+
+	############################################################################################
+	## genome		= 	dictionary object from build_genome()                                 ##
+	## coverage 	= 	integer eg. 4                                                         ##
+	## fcon		 	= 	list of contexts eg. ["CG", "CAA", ...]                               ##
+	## tabix	 	= 	boolean decision eg. True                                             ##
+	## header	 	= 	boolean decision eg. True                                             ##
+	############################################################################################
+
+	if header:
+		description = " ".join(fcon)
+		print("track type=\"bedGraph\" description=\"combined contexts: {}\"".format(description))
 
 	# 3) Iterate through input stdin to retrieve data for OUTPUT formatting
 	for line in sys.stdin:
@@ -102,7 +114,7 @@ def iterator(genome,coverage=0,fcon=None,tabix=False):
 
 		# Filter coverage
 		cov = int(column[4]) + int(column[5])
-		if cov < coverage: continue
+		if cov <= coverage: continue
 
 		# determine strand, retrieve sequence
 		CorG = genome[column[0]][int(column[1]):int(column[2])]
@@ -189,6 +201,8 @@ if __name__ == '__main__':
 						help='Filter CG context')
 	parser.add_argument('--tabix', required=False, default=False, action='store_true',
 						help='Print in tabix format [default: off]')
+	parser.add_argument('--header', required=False, default=False, action='store_true',
+						help='Print a header line for integration with DMR pipeline [default: off]')
 	parser.add_argument('--coverage', type=int, required=False, default=0,
 						help='Minimum coverage threshold [default: 0]')
 	parsed, unparsed = parser.parse_known_args()
