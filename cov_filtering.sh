@@ -43,9 +43,6 @@ cov=$4
 
 mkdir ${outputfolder}
 
-#FILES=$(cut -f1 ${samples} | tr "\n" " ")
-#arr=($FILES)
-#sample=${arr[${SLURM_ARRAY_TASK_ID}]}
 sample=${samples}
 INPUT=${inputpath}/${sample}/bedGraph
 mkdir ${outputfolder}/${sample}
