@@ -29,10 +29,10 @@ echo "process: extracting and reformatting samples"
 for i in "${samples[@]}"
 do
  id=${inputDir}/${i}/bedGraph/${i}_${context}.bedGraph
- echo ${i}_${context}.txt >> samples_${context}.txt
- cut -f-4 ${id} > ${i}_${context}.txt
+ echo ${outputDir}/${i}_${context}.txt >> ${outputDir}/samples_${context}.txt
+ cut -f-4 ${id} > ${outputDir}/${i}_${context}.txt
 done
-input_bedtools=$(cat samples_${context}.txt | tr "\n" " ")
+input_bedtools=$(cat ${outputDir}/samples_${context}.txt | tr "\n" " ")
 echo "process: bedtools unionbedg"
 bedtools unionbedg -i ${input_bedtools} -filler NA -header -names ${samples[@]} > ${outputDir}/nonfiltered_${context}.bed
 echo "process: filtering positions with more than "$allowed_NAs" NAs"
@@ -42,7 +42,7 @@ head -1 ${outputDir}/unsorted_${context}.bed > ${outputDir}/header_${context}
 tail -n+2 ${outputDir}/unsorted_${context}.bed | sort -k1,1 -k2,2n > ${outputDir}/tmp_${context}.bed
 cat ${outputDir}/header_${context} ${outputDir}/tmp_${context}.bed > ${outputDir}/${context}.bed
 echo "process: removing temporary files"
-rm *_${context}.txt
+rm ${outputDir}/*_${context}.txt
 rm ${outputDir}/nonfiltered_${context}.bed
 rm ${outputDir}/unsorted_${context}.bed
 rm ${outputDir}/header_${context}
