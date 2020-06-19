@@ -38,8 +38,12 @@ bedtools unionbedg -i ${input_bedtools} -filler NA -header -names ${samples[@]} 
 echo "process: filtering positions with more than "$allowed_NAs" NAs"
 cat ${outputDir}/nonfiltered_${context}.bed | awk -v var="$allowed_NAs" '{count=0;for (i=4;i<=NF;i++){ if ($i=="NA"){count=count+1}}}{if (count<=var) print $0}' > ${outputDir}/unsorted_${context}.bed
 echo "process: sorting bed file"
-sort -k1,1 -k2,2n ${outputDir}/unsorted_${context}.bed >> ${outputDir}/${context}.bed
+head -1 ${outputDir}/unsorted_${context}.bed > ${outputDir}/header_${context}
+tail -n+2 ${outputDir}/unsorted_${context}.bed | sort -k1,1 -k2,2n > ${outputDir}/tmp_${context}.bed
+cat ${outputDir}/header_${context} ${outputDir}/tmp_${context}.bed > ${outputDir}/${context}.bed
 echo "process: removing temporary files"
 rm *_${context}.txt
 rm ${outputDir}/nonfiltered_${context}.bed
 rm ${outputDir}/unsorted_${context}.bed
+rm ${outputDir}/header_${context}
+rm ${outputDir}/tmp_${context}.bed
