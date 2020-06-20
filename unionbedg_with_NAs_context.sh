@@ -41,6 +41,9 @@ echo "process: sorting bed file"
 head -1 ${outputDir}/unsorted_${context}.bed > ${outputDir}/header_${context}
 tail -n+2 ${outputDir}/unsorted_${context}.bed | sort -k1,1 -k2,2n > ${outputDir}/tmp_${context}.bed
 cat ${outputDir}/header_${context} ${outputDir}/tmp_${context}.bed > ${outputDir}/${context}.bed
+all_positions=$(wc -l ${outputDir}/nonfiltered_${context}.bed)
+retained=$(wc -l ${outputDir}/${context}.bed)
+echo "positions passing NA filter: "$retained"   from a total of "$all_positions
 echo "process: removing temporary files"
 rm ${outputDir}/*_${context}.txt
 rm ${outputDir}/nonfiltered_${context}.bed
