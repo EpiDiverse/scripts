@@ -1,6 +1,6 @@
 # Author: Iris Sammarco
 # Date: 19/09/2022
-# Perform redundancy analysis (RDA) with methylated positions, using country and growing condition (field and garden) as predictors, and test if the interaction is significant (anova). The output files are txt files with the anova significance levels (no RDA plots are plotted here). The significance level can be useful to assess whether clusters found in a PCA analysis show statistically significant differences in your data (in this case, my data clustered according to the country of the populations)
+# Description: perform redundancy analysis (RDA) with methylated positions, using country and growing condition (field and garden) as predictors, and test if the interaction is significant (anova). The output files are txt files with the anova significance levels (no RDA plots are plotted here). The significance level can be useful to assess whether clusters found in a PCA analysis show statistically significant differences in your data (in this case, my data clustered according to the country of the populations)
 
 library(vegan) # Used to run RDA
 library(data.table) # Used to run fread
