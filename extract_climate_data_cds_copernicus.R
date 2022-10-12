@@ -1,6 +1,6 @@
 #Author: Iris Sammarco
 #Date: 24/03/2020
-#Description: extract climatic variables from cds copernicus https://cds.climate.copernicus.eu/cdsapp#!/home from the GPS location of interest
+#Description: extract climatic variables from cds copernicus https://cds.climate.copernicus.eu/cdsapp#!/home for the GPS location of interest
 
 library(ncdf4)
 library(chron)
