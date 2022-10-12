@@ -1,6 +1,6 @@
-#Author: Iris Sammarco
-#Date: 20/02/2021
-#Description: performs Gene Ontology (GO) enrichment analysis using custom annotation files and plot the results
+# Author: Iris Sammarco
+# Date: 20/02/2021
+# Description: performs Gene Ontology (GO) enrichment analysis using custom annotation files and plot the results
 
 library(clusterProfiler)
 library(ggplot2)
